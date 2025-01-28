@@ -10,6 +10,4 @@ app.post('/signup', (req, res) => {
     res.send(`Gotten the data needed ${message}`);
 });
 
-app.listen(3000, () => {
-    console.log(`App listening at http://localhost:${4000}`);
-});
+app.listen(3000, () => {});
