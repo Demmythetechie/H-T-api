@@ -1,0 +1,24 @@
+{
+  "name": "h-t-api",
+  "version": "1.0.0",
+  "description": "This Repository contains all the API endpoint for the website Hack and Tack project",
+  "homepage": "https://github.com/Demmythetechie/H-T-api#readme",
+  "bugs": {
+    "url": "https://github.com/Demmythetechie/H-T-api/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Demmythetechie/H-T-api.git"
+  },
+  "license": "ISC",
+  "author": "Okunade Naheem Demilade",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9"
+  }
+}
