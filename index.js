@@ -2,7 +2,7 @@ import e from "express";
 import cors from "cors";
 const app = e();
 const rules = cors();
-app.use(cors({origin: 'http://localhost:3000'}));
+app.use(cors());
 
 
 app.get('/', (req, res) => {
