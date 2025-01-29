@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/signup', (req, res) => {
-    const message = req.body;
+    const message = req;
     res.send(`Gotten the data needed ${message}`);
 });
 
