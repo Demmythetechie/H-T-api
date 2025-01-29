@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/signup', (req, res) => {
-    const message = req.config.data;
+    const message = req.config;
     res.send(`Gotten the data needed ${message}`);
 });
 
