@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 
 app.post('/signup', (req, res) => {
     const message = req.body;
-    res.send(`Gotten the data needed ${message.fname, message.lname, message.email, message.psswd}`);
+    res.send(`Gotten the data needed ${message.fname, message.lname, message.email, message.pswd}`);
 });
 
 app.listen(3000, () => {});
