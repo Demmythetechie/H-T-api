@@ -32,7 +32,7 @@ app.post('/signup', async (req, res) => {
         Password: message.pswd,
         year: new Date().toLocaleString(),
         verified: false
-    });
+    }, { versionKey: false });
 
     try {
         await usersDetails.save();
