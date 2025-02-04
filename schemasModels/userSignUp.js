@@ -7,6 +7,7 @@ const accountDetails = new Schema({
     Email: String,
     Password: String,
     year: String,
+    verified: Boolean
 });
 
 const signUp = new model('userSignUp', accountDetails);
