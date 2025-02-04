@@ -1,7 +1,7 @@
 import e from "express";
 import cors from "cors";
 import mongoose from "mongoose";
-import signUp from "./Schemas_Models/userSignUp";
+import signUp from "./schemasModels/userSignUp";
 const app = e();
 const rules = cors();
 app.use(cors({origin: 'http://localhost:3000'}));
