@@ -1,6 +1,7 @@
 import e from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import signUp from "./Schemas_Models/userSignUp";
 const app = e();
 const rules = cors();
 app.use(cors({origin: 'http://localhost:3000'}));
@@ -22,9 +23,21 @@ app.get('/', (req, res) => {
     res.send('Hello World');
 });
 
-app.post('/signup', (req, res) => {
+app.post('/signup', async (req, res) => {
     const message = req.body;
-    res.send(`Gotten the data needed ${message.fname, message.lname, message.email, message.pswd}`);
+    const usersDetails = new signUp({
+        Firstname: message.fname,
+        Lastname: message.lname,
+        Email: message.email,
+        Password: message.pswd,
+    });
+
+    try {
+        await usersDetails.save();
+        res.send("Saved Succefully");
+    } catch(error) {
+        res.send("Not saved");
+    }
 });
 
 app.listen(3000, () => {});
