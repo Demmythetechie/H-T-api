@@ -10,7 +10,7 @@ app.use(e.json());
 
 (async function () {
     try {
-        await mongoose.connect('mongodb+srv://demmythetechie:Alade3015@h-t.8p6yq.mongodb.net/?retryWrites=true&w=majority&appName=H-T')
+        await mongoose.connect('mongodb+srv://demmythetechie:Alade3015@h-t.8p6yq.mongodb.net/Usersinfo?retryWrites=true&w=majority&appName=H-T')
         console.log('connected Successfully ✅');
     } catch(error) {
         console.error("MongoDB Connection Error ❌:", error);
