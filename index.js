@@ -30,7 +30,7 @@ app.post('/signup', async (req, res) => {
         Lastname: message.lname,
         Email: message.email,
         Password: message.pswd,
-        year: new Date()
+        year: new Date().toLocaleString()
     });
 
     try {
