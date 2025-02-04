@@ -10,6 +10,6 @@ const accountDetails = new Schema({
     ids: mongoose.ObjectId
 });
 
-const signUp = new model(userSignUp, accountDetails);
+const signUp = new model('userSignUp', accountDetails);
 
 export default signUp;
