@@ -6,7 +6,7 @@ const accountDetails = new Schema({
     Lastname: String,
     Email: String,
     Password: String,
-    Year: Date,
+    year: Date.now,
     ids: mongoose.ObjectId
 });
 
