@@ -8,7 +8,7 @@ const accountDetails = new Schema({
     Password: String,
     year: String,
     verified: Boolean
-});
+}, { versionKey: false });
 
 const signUp = new model('userSignUp', accountDetails);
 
