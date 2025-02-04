@@ -7,7 +7,6 @@ const accountDetails = new Schema({
     Email: String,
     Password: String,
     year: String,
-    ids: mongoose.ObjectId
 });
 
 const signUp = new model('userSignUp', accountDetails);
