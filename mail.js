@@ -7,7 +7,7 @@ async function mailer(receiver) {
         secure: true, // true for 465, false for 587
         auth: {
             user: "naim.okunade@gmail.com",
-            pass: "vhev ulzz aoog usvj",
+            pass: "vhevulzzaoogusvj",
         },
     });
 
