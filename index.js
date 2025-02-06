@@ -43,7 +43,7 @@ app.post('/signup', async (req, res) => {
             res.send("Saved Succefully");
         }
     } catch(error) {
-        res.send("Not saved");
+        res.send(`Not saved ${error}`);
     }
 });
 
