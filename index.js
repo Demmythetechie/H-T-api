@@ -2,6 +2,7 @@ import e from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import signUp from "./schemasModels/userSignUp.js";
+import mailer from "./mail.js";
 const app = e();
 const rules = cors();
 app.use(cors({origin: 'http://localhost:3000'}));
@@ -40,6 +41,7 @@ app.post('/signup', async (req, res) => {
             res.send('An account has been created with this email');
         } else {
             await usersDetails.save();
+            mailer(message.email);
             res.send("Saved Succefully");
         }
     } catch(error) {
