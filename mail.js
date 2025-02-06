@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 
 async function mailer(receiver) {
     const transporter = nodemailer.createTransport({
-        host: "smtp.example.com",
+        host: "smtp.gmail.com",
         port: 465, // or 587
         secure: true, // true for 465, false for 587
         auth: {
