@@ -35,8 +35,13 @@ app.post('/signup', async (req, res) => {
     });
 
     try {
-        await usersDetails.save();
-        res.send("Saved Succefully");
+        const exist = await usersDetails.findOne({Email: message.email});
+        if (exist) {
+            res.send('An account has been created with this email')
+        } else {
+            await usersDetails.save();
+            res.send("Saved Succefully");
+        }
     } catch(error) {
         res.send("Not saved");
     }
