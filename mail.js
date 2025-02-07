@@ -1,6 +1,15 @@
 import nodemailer from "nodemailer";
+import fs from "fs";
+import path from "path";
 
-async function mailer(receiver) {
+async function mailer(receiver, name) {
+    // Read the HTML file
+    const templatePath = path.join(process.cwd(), "email-template.html");
+    let emailTemplate = fs.readFileSync(templatePath, "utf8");
+
+    // Replace placeholders
+    emailTemplate = emailTemplate.replace("{{name}}", name).replace("{{verification_link}}", "google.com");
+
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 465, // or 587
@@ -16,7 +25,7 @@ async function mailer(receiver) {
         to: receiver, // Multiple recipients
         subject: "Subject of the Email",
         text: "Plain text body of the email",
-        html: "<h1>Hello</h1><p>This is an HTML email.</p>", // HTML version
+        html: emailTemplate
     };
 
     try {
@@ -24,7 +33,7 @@ async function mailer(receiver) {
         console.log("Email sent:", info.response);
     } catch (error) {
         console.error("Error:", error);
-    }    
+    }
 };
 
 export default mailer;

@@ -41,7 +41,7 @@ app.post('/signup', async (req, res) => {
             res.send('An account has been created with this email');
         } else {
             await usersDetails.save();
-            mailer(message.email);
+            mailer(message.email, message.fname);
             res.send("Saved Succefully");
         }
     } catch(error) {
