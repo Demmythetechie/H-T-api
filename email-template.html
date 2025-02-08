@@ -48,36 +48,17 @@
             background: #0056b3;
         }
 
-        .svg-container {
-            width: 15%;
-            aspect-ratio: 1 / 1;
-        }
-
-        @media (min-width: 640px) { /* sm */
-            .svg-container { width: 10%; }
-        }
-
-        @media (min-width: 768px) { /* md */
-            .svg-container { width: 7%; }
-        }
-
-        @media (min-width: 1024px) { /* lg */
-            .svg-container { width: 5%; }
-        }
-
-        @media (min-width: 1280px) { /* xl */
-            .svg-container { width: 4%; }
+        .img_logo {
+            width: 10%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="svg-container">
-            <svg viewBox="0 0 150 150">
-                <path d="M0 1 L8 1 M8 1 L8 100 M8 100 L98 100 M98 100 L98 149 M8 120 L8 149 M0 149 L60 149 M52 149 L52 50 M52 50 L100 50 M100 50 L100 1 M100 1 L92 1 M149 149 L90 149 M142 149 L142 1 M149 1 L120 1 M120 1 L120 70 M120 70 L30 70 M30 70 L30 1 M30 1 L60 1 M52 1 L52 20" stroke="#000" stroke-width="2px"/>
-            </svg>
-        </div>
+        <img src="logo.png" alt="H&T" class="img_logo">
         <h1>Verify Your Account</h1>
         <p>Hi {{name}},</p>
         <p>Thank you for signing up. Please click the button below to verify your account:</p>
