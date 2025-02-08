@@ -23,7 +23,7 @@ async function mailer(receiver, name) {
     const mailOptions = {
         from: "naim.okunade@gmail.com", // Sender's email
         to: receiver, // Multiple recipients
-        subject: "Verify your H&T account",
+        subject: "Subject of the Email",
         text: "Plain text body of the email",
         html: emailTemplate
     };
