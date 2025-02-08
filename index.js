@@ -5,7 +5,7 @@ import signUp from "./schemasModels/userSignUp.js";
 import mailer from "./mail.js";
 const app = e();
 const rules = cors();
-app.use(cors({origin: 'http://localhost:3000'}));
+app.use(cors({origin: 'https://hack-tack.vercel.app'}));
 app.use(e.json());
 
 
