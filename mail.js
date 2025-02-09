@@ -23,8 +23,8 @@ async function mailer(receiver, name) {
     const mailOptions = {
         from: "naim.okunade@gmail.com", // Sender's email
         to: receiver, // Multiple recipients
-        subject: "Subject of the Email",
-        text: "Plain text body of the email",
+        subject: "Hack & Tack Account verification",
+        text: "Verification of your H&T account is only valid for 24 hours",
         html: emailTemplate,
         attachments: [
             {
