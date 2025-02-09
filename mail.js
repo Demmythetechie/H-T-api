@@ -25,7 +25,14 @@ async function mailer(receiver, name) {
         to: receiver, // Multiple recipients
         subject: "Subject of the Email",
         text: "Plain text body of the email",
-        html: emailTemplate
+        html: emailTemplate,
+        attachments: [
+            {
+              filename: "logo.png",
+              path: "logo.png", // Local path to the image
+              cid: "uniqueimageid", // Must be unique and match the src in HTML
+            },
+        ],
     };
 
     try {
