@@ -64,7 +64,7 @@ app.get('/verify/:token', async (req, res) => {
     try {
         const { token } =  req.params;
         console.log('CHECK 1');
-        const verifying = jwt.verify(token, secretKey);
+        const verifying = jwt.verify(token, process.env.SECRET_KEY);
         console.log('CHECK 2');
         await signUp.findOneAndUpdate({ Email: verifying }, { $set: { verified: true } });
         console.log('CHECK 3');
