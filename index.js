@@ -4,9 +4,13 @@ import mongoose from "mongoose";
 import signUp from "./schemasModels/userSignUp.js";
 import mailer from "./mail.js";
 const app = e();
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 const rules = cors();
 app.use(cors({origin: 'https://hack-tack.vercel.app'}));
 app.use(e.json());
+
+dotenv.config();
 
 
 (async function () {
@@ -24,6 +28,11 @@ app.get('/', (req, res) => {
     res.send('Hello World');
 });
 
+
+//--------------------------------------------------------------------
+
+// This is the API handling the signup request for new users
+
 app.post('/signup', async (req, res) => {
     const message = req.body;
     const usersDetails = new signUp({
@@ -40,13 +49,29 @@ app.post('/signup', async (req, res) => {
         if (exist) {
             res.send('An account has been created with this email');
         } else {
+            const emails = message.email
             await usersDetails.save();
-            mailer(message.email, message.fname);
+            const token = jwt.sign({ userEmail: emails }, process.env.SECRET_KEY, { expiresIn: "24h" });
+            mailer(message.email, message.fname, token);
             res.send("Saved Succefully");
         }
     } catch(error) {
         res.send(`Not saved ${error}`);
     }
 });
+
+app.get('/verify/:token', async (res, req) => {
+    try {
+        const { token } =  req.params;
+        const verifying = jwt.verify(token, secretKey);
+        await signUp.findOneAndUpdate({ Email: verifying }, { $set: { verified: true } });
+        res.send('validated Succesfully');
+    } catch(e) {
+        res.send(e);
+    }
+    
+});
+
+//-------------------------------------------------------------------------
 
 app.listen(3000, () => {});

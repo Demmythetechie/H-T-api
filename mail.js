@@ -2,13 +2,13 @@ import nodemailer from "nodemailer";
 import fs from "fs";
 import path from "path";
 
-async function mailer(receiver, name) {
+async function mailer(receiver, name, tk) {
     // Read the HTML file
     const templatePath = path.join(process.cwd(), "email-template.html");
     let emailTemplate = fs.readFileSync(templatePath, "utf8");
 
     // Replace placeholders
-    emailTemplate = emailTemplate.replace("{{name}}", name).replace("{{verification_link}}", "google.com");
+    emailTemplate = emailTemplate.replace("{{name}}", name).replace("{{verification_link}}", `https://hack-tack-api.onrender.com/verify/${tk}`);
 
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
