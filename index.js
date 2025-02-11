@@ -63,11 +63,14 @@ app.post('/signup', async (req, res) => {
 app.get('/verify/:token', async (req, res) => {
     try {
         const { token } =  req.params;
+        console.log('CHECK 1');
         const verifying = jwt.verify(token, secretKey);
+        console.log('CHECK 2');
         await signUp.findOneAndUpdate({ Email: verifying }, { $set: { verified: true } });
+        console.log('CHECK 3');
         res.send('validated Succesfully');
     } catch(e) {
-        res.send(e);
+        res.send(`${e} error`);
     }
     
 });
