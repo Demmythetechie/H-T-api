@@ -60,7 +60,7 @@ app.post('/signup', async (req, res) => {
     }
 });
 
-app.get('/verify/:token', async (res, req) => {
+app.get('/verify/:token', async (req, res) => {
     try {
         const { token } =  req.params;
         const verifying = jwt.verify(token, secretKey);
