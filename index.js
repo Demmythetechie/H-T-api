@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import signUp from "./schemasModels/userSignUp.js";
 import mailer from "./mail.js";
 import path from 'path';
+import { fileURLToPath } from "url";
 const app = e();
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
