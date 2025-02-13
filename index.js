@@ -12,6 +12,8 @@ app.use(cors({origin: 'https://hack-tack.vercel.app'}));
 app.use(e.json());
 
 // Set EJS as the template engine (This is for the rendered html for email confirmation)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views")); // Ensure views folder exists
 
