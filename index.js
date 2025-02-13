@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import signUp from "./schemasModels/userSignUp.js";
 import mailer from "./mail.js";
+import path from 'path';
 const app = e();
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
@@ -10,6 +11,12 @@ const rules = cors();
 app.use(cors({origin: 'https://hack-tack.vercel.app'}));
 app.use(e.json());
 
+// Set EJS as the template engine (This is for the rendered html for email confirmation)
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views")); // Ensure views folder exists
+
+
+// Initializing the enviroment variable
 dotenv.config();
 
 
@@ -68,7 +75,10 @@ app.get('/verify/:token', async (req, res) => {
         console.log('CHECK 2');
         await signUp.findOneAndUpdate({ Email: verifying.userEmail }, { $set: { verified: true } });
         console.log('CHECK 3');
-        res.send('validated Succesfully');
+        res.render("confirmation", { 
+            title: "Email Verified",
+            message: "Your email has been successfully verified!"
+        });
     } catch(e) {
         res.send(`${e} error`);
     }
