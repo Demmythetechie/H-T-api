@@ -2,7 +2,7 @@ import e from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import signUp from "./schemasModels/userSignUp.js";
-import mailer from "./mail.js";
+import mailer from "./confirmEmail.js";
 import path from 'path';
 import { fileURLToPath } from "url";
 const app = e();
