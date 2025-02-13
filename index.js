@@ -77,7 +77,7 @@ app.get('/verify/:token', async (req, res) => {
         console.log('CHECK 3');
         res.render("confirmation", { 
             title: "Email Verified",
-            message: "Your email has been successfully verified!"
+            message: "Your email has been confirmed succesfully"
         });
     } catch(e) {
         res.send(`${e} error`);
