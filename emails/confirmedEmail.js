@@ -4,7 +4,7 @@ import path from "path";
 
 async function verifiedReciept(receiver, name) {
     // Read the HTML file
-    const templatePath = path.join(process.cwd(), "email-template.html");
+    const templatePath = path.join(process.cwd(), "confirmedReciept.html");
     let emailTemplate = fs.readFileSync(templatePath, "utf8");
 
     // Replace placeholders
