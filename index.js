@@ -2,7 +2,8 @@ import e from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import signUp from "./schemasModels/userSignUp.js";
-import verifyEmail from "./confirmEmail.js";
+import verifyEmail from "./emails/confirmEmail.js";
+import verifiedReciept from "./emails/confirmedEmail.js";
 import path from 'path';
 import { fileURLToPath } from "url";
 const app = e();
@@ -73,11 +74,9 @@ app.post('/signup', async (req, res) => {
 app.get('/verify/:token', async (req, res) => {
     try {
         const { token } =  req.params;
-        console.log('CHECK 1');
         const verifying = jwt.verify(token, process.env.SECRET_KEY);
-        console.log('CHECK 2');
         await signUp.findOneAndUpdate({ Email: verifying.userEmail }, { $set: { verified: true } });
-        console.log('CHECK 3');
+        verifiedReciept(verifying.userEmail, message.fname);
         res.render("confirmation", { 
             title: "Email Verified",
             message: "Your email has been confirmed succesfully"
