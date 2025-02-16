@@ -2,7 +2,7 @@ import e from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import signUp from "./schemasModels/userSignUp.js";
-import mailer from "./confirmEmail.js";
+import verifyEmail from "./confirmEmail.js";
 import path from 'path';
 import { fileURLToPath } from "url";
 const app = e();
@@ -62,7 +62,7 @@ app.post('/signup', async (req, res) => {
             const emails = message.email
             await usersDetails.save();
             const token = jwt.sign({ userEmail: emails }, process.env.SECRET_KEY, { expiresIn: "24h" });
-            mailer(message.email, message.fname, token);
+            verifyEmail(message.email, message.fname, token);
             res.send("Saved Succefully");
         }
     } catch(error) {
