@@ -77,6 +77,7 @@ app.get('/verify/:token', async (req, res) => {
         const verifying = jwt.verify(token, process.env.SECRET_KEY);
         await signUp.findOneAndUpdate({ Email: verifying.userEmail }, { $set: { verified: true } });
         const user = await signUp.findOne({Email: verifying.userEmail});
+        console.log('Running multiple times');
         verifiedReciept(verifying.userEmail, user.Firstname);
         res.render("confirmation", { 
             title: "Email Verified",
