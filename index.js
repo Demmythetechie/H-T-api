@@ -71,6 +71,11 @@ app.post('/signup', async (req, res) => {
     }
 });
 
+//---------------------------------------------------------------------------
+
+
+// This function is for Email verification after Sign Up
+
 app.get('/verify/:token', async (req, res) => {
     try {
         const { token } =  req.params;
@@ -85,7 +90,7 @@ app.get('/verify/:token', async (req, res) => {
             message: "Your email has been confirmed succesfully"
         });
     } catch(e) {
-        res.send(`${e} error`);
+        return res.status(401).json({ error: "Unauthorized: Impersonation detected" });
     }
     
 });
