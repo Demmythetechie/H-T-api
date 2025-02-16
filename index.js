@@ -90,7 +90,7 @@ app.get('/verify/:token', async (req, res) => {
             message: "Your email has been confirmed succesfully"
         });
     } catch(e) {
-        return res.status(401).json({ error: "Unauthorized: Impersonation detected" });
+        return res.status(401).render('401');
     }
     
 });
