@@ -101,6 +101,8 @@ app.post('/signin', async (req, res) => {
     try {
         const loginDetails = req.body;
         const log = await signUp.findOne({Email: loginDetails.email});
+        console.log(loginDetails);
+        console.log(log);
         if (loginDetails.pswd === log.pswd) {
             res.send('User has been granted access');
         } else {
