@@ -97,7 +97,7 @@ app.get('/verify/:token', async (req, res) => {
 
 //-------------------------------------------------------------------------
 
-app.post('signin', async (req, res) =>{
+app.post('/signin', async (req, res) =>{
     try {
         const loginDetails = req.body;
         const log = await signUp.findOne({Email: verifying.userEmail});
