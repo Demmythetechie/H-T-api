@@ -97,10 +97,10 @@ app.get('/verify/:token', async (req, res) => {
 
 //-------------------------------------------------------------------------
 
-app.post('/signin', async (req, res) =>{
+app.post('/signin', async (req, res) => {
     try {
         const loginDetails = req.body;
-        const log = await signUp.findOne({Email: verifying.userEmail});
+        const log = await signUp.findOne({Email: loginDetails.email});
         if (loginDetails.pswd === log.pswd) {
             res.send('User has been granted access');
         } else {
