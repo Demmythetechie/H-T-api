@@ -92,6 +92,11 @@ app.get('/verify/:token', async (req, res) => {
                 title: "Email Verified",
                 message: "Your email has been confirmed succesfully"
             });
+        } else {
+            res.render("expired", { 
+                title: "Link has expired",
+                message: "Confirmation link has expired"
+            });
         }
     } catch(e) {
         return res.status(401).render('401');
