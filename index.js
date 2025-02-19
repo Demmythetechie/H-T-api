@@ -1,6 +1,6 @@
 import e from "express";
 import cors from "cors";
-import mongoose from "mongoose";
+import mongoose, { trusted } from "mongoose";
 import signUp from "./schemasModels/userSignUp.js";
 import verifyEmail from "./emails/confirmEmail.js";
 import verifiedReciept from "./emails/confirmedEmail.js";
@@ -88,11 +88,11 @@ app.get('/verify/:token', async (req, res) => {
         if (!user.verified) {
             await signUp.findOneAndUpdate({ Email: verifying.userEmail }, { $set: { verified: true } });
             verifiedReciept(verifying.userEmail, user.Firstname);
+            res.render("confirmation", { 
+                title: "Email Verified",
+                message: "Your email has been confirmed succesfully"
+            });
         }
-        res.render("confirmation", { 
-            title: "Email Verified",
-            message: "Your email has been confirmed succesfully"
-        });
     } catch(e) {
         return res.status(401).render('401');
     }
@@ -113,9 +113,9 @@ app.post('/signin', async (req, res) => {
                 sameSite: "strict", // Prevent CSRF attacks
                 maxAge: 3600000,    // 1 hour expiration
             });
-            res.send('User has been granted access');
+            res.send(true);
         } else {
-            res.send('User has been denied access');
+            res.send(false);
         }
     } catch(error) {
         res.send(error);
