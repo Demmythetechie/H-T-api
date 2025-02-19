@@ -6,12 +6,16 @@ import verifyEmail from "./emails/confirmEmail.js";
 import verifiedReciept from "./emails/confirmedEmail.js";
 import path from 'path';
 import { fileURLToPath } from "url";
+import cookieParser from "cookie-parser";
 const app = e();
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 const rules = cors();
 app.use(cors({origin: 'https://hack-tack.vercel.app'}));
 app.use(e.json());
+
+//Initialized the cookie parser for sending token to users after login
+app.use(cookieParser());
 
 // Set EJS as the template engine (This is for the rendered html for email confirmation)
 const __filename = fileURLToPath(import.meta.url);
@@ -102,6 +106,13 @@ app.post('/signin', async (req, res) => {
         const loginDetails = req.body;
         const log = await signUp.findOne({Email: loginDetails.email});
         if (loginDetails.pswd === log.Password) {
+            const access = jwt.sign({Email: loginDetails.email}, process.env.SECRET_KEY, { expiresIn: "24h" });
+            res.cookie("token", access, {
+                httpOnly: true,    // Prevents JavaScript access
+                secure: true,      // Send only over HTTPS (set to false for local testing)
+                sameSite: "strict", // Prevent CSRF attacks
+                maxAge: 3600000,    // 1 hour expiration
+            });
             res.send('User has been granted access');
         } else {
             res.send('User has been denied access');
