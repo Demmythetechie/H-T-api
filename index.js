@@ -129,6 +129,7 @@ app.post('/signin', async (req, res) => {
             res.send(false);
         }
     } catch(error) {
+        console.log("e");
         res.send(error);
     }
 });
