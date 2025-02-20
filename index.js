@@ -111,7 +111,8 @@ app.post('/signin', async (req, res) => {
         const loginDetails = req.body;
         const log = await signUp.findOne({Email: loginDetails.email});
         if (log === null) {
-            return res.send(null);
+            res.send(null);
+            return;
         }
         if (loginDetails.pswd === log.Password) {
             const access = jwt.sign({Email: loginDetails.email}, process.env.SECRET_KEY, { expiresIn: "24h" });
