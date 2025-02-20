@@ -111,7 +111,7 @@ app.post('/signin', async (req, res) => {
         const loginDetails = req.body;
         const log = await signUp.findOne({Email: loginDetails.email});
         if (log === null) {
-            res.send(null);
+            res.send('null');
             return;
         }
         if (loginDetails.pswd === log.Password) {
