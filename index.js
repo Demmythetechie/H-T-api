@@ -111,7 +111,7 @@ app.post('/signin', async (req, res) => {
         const loginDetails = req.body;
         const log = await signUp.findOne({Email: loginDetails.email});
         if (Object.keys(log).length === 0) {
-            console.log(2);
+            console.log(1);
             return res.send(null);
         }
         console.log(2);
