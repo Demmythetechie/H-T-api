@@ -110,11 +110,12 @@ app.post('/signin', async (req, res) => {
     try {
         const loginDetails = req.body;
         const log = await signUp.findOne({Email: loginDetails.email});
+        console.log("0");
         if (Object.keys(log).length === 0) {
-            console.log(1);
+            console.log("1");
             return res.send(null);
         }
-        console.log(2);
+        console.log("2");
         if (loginDetails.pswd === log.Password) {
             const access = jwt.sign({Email: loginDetails.email}, process.env.SECRET_KEY, { expiresIn: "24h" });
             res.cookie("token", access, {
