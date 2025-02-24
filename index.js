@@ -10,8 +10,11 @@ import cookieParser from "cookie-parser";
 const app = e();
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-const rules = cors();
-app.use(cors({origin: 'https://hack-tack.vercel.app'}));
+const corsOptions = {
+    origin: ['http://localhost:3000', 'https://hack-tack.vercel.app'],
+    credentials: true,
+  };
+app.use(cors(corsOptions));
 app.use(e.json());
 
 //Initialized the cookie parser for sending token to users after login
