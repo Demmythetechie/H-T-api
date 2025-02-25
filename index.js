@@ -114,7 +114,7 @@ app.post('/signin', async (req, res) => {
         const loginDetails = req.body;
         const log = await signUp.findOne({Email: loginDetails.email});
         if (log === null) {
-            res.send('null');
+            res.send({exst: true, status: false});
             return;
         }
         if (loginDetails.pswd === log.Password) {
@@ -125,9 +125,9 @@ app.post('/signin', async (req, res) => {
                 sameSite: "strict", // Prevent CSRF attacks
                 maxAge: 3600000,    // 1 hour expiration
             });
-            res.send(true);
+            res.send({exst: false, status: true});
         } else {
-            res.send(false);
+            res.send({exst: false, status: false});
         }
     } catch(error) {
         console.log("e");
