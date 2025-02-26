@@ -122,7 +122,7 @@ app.post('/signin', async (req, res) => {
             res.cookie("ht-token", access, {
                 httpOnly: false,    // Prevents JavaScript access
                 secure: false,      // Send only over HTTPS (set to false for local testing)
-                sameSite: None, // Prevent CSRF attacks
+                sameSite: "None", // Prevent CSRF attacks
                 maxAge: 3600000,    // 1 hour expiration
             });
             res.send({exst: false, status: true});
