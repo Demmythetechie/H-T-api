@@ -118,8 +118,8 @@ app.post('/signin', async (req, res) => {
             return;
         }
         if (loginDetails.pswd === log.Password) {
-            const access = jwt.sign({Email: loginDetails.email}, process.env.SECRET_KEY, { expiresIn: "24h" });
-            res.cookie("token", access, {
+            const access = jwt.sign({Email: loginDetails.email}, process.env.SECRET_KEY, { expiresIn: "1h" });
+            res.cookie("ht-token", access, {
                 httpOnly: true,    // Prevents JavaScript access
                 secure: true,      // Send only over HTTPS (set to false for local testing)
                 sameSite: "strict", // Prevent CSRF attacks
