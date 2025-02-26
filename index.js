@@ -124,6 +124,7 @@ app.post('/signin', async (req, res) => {
                 secure: false,      // Send only over HTTPS (set to false for local testing)
                 sameSite: "None", // Prevent CSRF attacks
                 maxAge: 3600000,    // 1 hour expiration
+                path: '/'
             });
             res.send({exst: false, status: true});
         } else {
