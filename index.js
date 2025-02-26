@@ -121,7 +121,7 @@ app.post('/signin', async (req, res) => {
             const access = jwt.sign({Email: loginDetails.email}, process.env.SECRET_KEY, { expiresIn: "1h" });
             res.cookie("ht-token", access, {
                 httpOnly: true,    // Prevents JavaScript access
-                secure: true,      // Send only over HTTPS (set to false for local testing)
+                secure: false,      // Send only over HTTPS (set to false for local testing)
                 sameSite: "strict", // Prevent CSRF attacks
                 maxAge: 3600000,    // 1 hour expiration
             });
