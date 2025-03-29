@@ -16,7 +16,7 @@ async function verifyEmail(receiver, name, tk) {
         secure: true, // true for 465, false for 587
         auth: {
             user: "naim.okunade@gmail.com",
-            pass: "vhevulzzaoogusvj",
+            pass: "qrkqntoirakuiqrp",
         },
     });
 
