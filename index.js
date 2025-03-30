@@ -114,7 +114,7 @@ app.post('/signin', async (req, res) => {
         const loginDetails = req.body;
         const log = await signUp.findOne({Email: loginDetails.email});
         if (log === null) {
-            res.send({exst: true, status: false});
+            res.send({doesntExst: true, status: false});
             return;
         }
         if (loginDetails.pswd === log.Password) {
@@ -126,9 +126,9 @@ app.post('/signin', async (req, res) => {
                 maxAge: 3600000,    // 1 hour expiration
                 path: '/'
             });
-            res.send({exst: false, status: true});
+            res.send({doesntExst: false, status: true});
         } else {
-            res.send({exst: false, status: false});
+            res.send({doesntExst: false, status: false});
         }
     } catch(error) {
         console.log("e");
