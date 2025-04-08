@@ -130,6 +130,7 @@ app.post('/signin', async (req, res) => {
 app.get('/userInfo', async (req, res) => {
     try {
         const sentToken = req.header;
+        console.log(sentToken.Authorization);
         const loginTokenValidity = jwt.verify(sentToken['Authorization'], process.env.SECRET_KEY);
         const info = await signUp.findOne({Email: loginTokenValidity});
         res.json(info);
