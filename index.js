@@ -12,6 +12,7 @@ import dotenv from 'dotenv';
 const corsOptions = {
     origin: ['http://localhost:3000', 'https://hack-tack.vercel.app'],
     credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization']
 };
 app.use(cors(corsOptions));
 app.use(e.json());
