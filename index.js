@@ -116,27 +116,13 @@ app.post('/signin', async (req, res) => {
         }
         if (loginDetails.pswd === log.Password) {
             const access = jwt.sign({Email: loginDetails.email}, process.env.SECRET_KEY, { expiresIn: "1h" });
-            res.json({doesntExst: false, status: true, token: access});
+            res.json({doesntExst: false, status: true, token: access, userInfo: log});
         } else {
             res.send({doesntExst: false, status: false});
         }
     } catch(error) {
         console.log("e");
         res.send(error);
-    }
-});
-
-//This api gets the user information for the header Navigation
-
-app.get('/userInfo', async (req, res) => {
-    try {
-        const sentToken = req.headers;
-        console.log(sentToken);
-        const loginTokenValidity = jwt.verify(sentToken['Authorization'], process.env.SECRET_KEY);
-        const info = await signUp.findOne({Email: loginTokenValidity});
-        res.json(info);
-    } catch (error) {
-        res.send(`Error retrieving user information ${error}`);
     }
 });
 
